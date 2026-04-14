@@ -1,7 +1,11 @@
-import MLproject.config.configuration as cfg
-print("Using config file from:", cfg.__file__)
+import sys
+import os
+
+# ✅ Add src folder to path
+sys.path.append(os.path.abspath("src"))
 
 from MLproject import logger
+
 from MLproject.pipeline.stage_01_data_ingestion import DataIngestionTrainingPipeline
 from MLproject.pipeline.stage_02_data_validation import DataValidationTrainingPipeline
 from MLproject.pipeline.stage_03_data_transformation import DataTransformationTrainingPipeline
@@ -9,36 +13,35 @@ from MLproject.pipeline.stage_04_model_trainer import ModelTrainerTrainingPipeli
 from MLproject.pipeline.stage_05_model_evaluation import ModelEvaluationTrainingPipeline
 
 
-STAGE_NAME = "Data Injestion Stage"
+# =========================
+# DATA INGESTION
+# =========================
+STAGE_NAME = "Data Ingestion Stage"
 
 try:
-    logger.info(f">>>>>> stage {STAGE_NAME} started <<<<<<") 
-    data_ingestion = DataIngestionTrainingPipeline()
-    data_ingestion.main()
+    logger.info(f">>>>>> stage {STAGE_NAME} started <<<<<<")
+    
+    obj = DataIngestionTrainingPipeline()
+    obj.main()
+    
     logger.info(f">>>>>> stage {STAGE_NAME} completed <<<<<<\n\nx==========x")
-        
+
 except Exception as e:
-        logger.exception(e)
-        raise e
+    logger.exception(e)
+    raise e
 
 
-from MLproject.components.data_validation import DataValidation
-from MLproject.config.configuration import ConfigurationManager
-from MLproject import logger
-
-
-
+# =========================
+# DATA VALIDATION
+# =========================
 STAGE_NAME = "Data Validation Stage"
 
 try:
     logger.info(f">>>>>> stage {STAGE_NAME} started <<<<<<")
-
-    config = ConfigurationManager()
-    data_validation_config = config.get_data_validation_config()
-
-    data_validation = DataValidation(config=data_validation_config)
-    data_validation.validate_all_columns()
-
+    
+    obj = DataValidationTrainingPipeline()
+    obj.main()
+    
     logger.info(f">>>>>> stage {STAGE_NAME} completed <<<<<<\n\nx==========x")
 
 except Exception as e:
@@ -46,38 +49,55 @@ except Exception as e:
     raise e
 
 
-
-STAGE_NAME= "Data Transformation Stage"
-
-try:
-        logger.info(f">>>>>> stage {STAGE_NAME} started <<<<<<")
-        data_ingestion=DataTransformationTrainingPipeline()
-        data_ingestion.main()
-        logger.info(f">>>>>> stage {STAGE_NAME} completed <<<<<<\n\nx==========x")
-except Exception as e:
-        logger.exception(e)
-        raise e
-
-
-STAGE_NAME = "Model Training Stage "
-
+# =========================
+# DATA TRANSFORMATION
+# =========================
+STAGE_NAME = "Data Transformation Stage"
 
 try:
-        logger.info(f">>>>>> stage {STAGE_NAME} started <<<<<<")
-        obj=ModelTrainerTrainingPipeline()
-        obj.main()
-        logger.info(f">>>>>> stage {STAGE_NAME} completed <<<<<<\n\nx==========x")
+    logger.info(f">>>>>> stage {STAGE_NAME} started <<<<<<")
+    
+    obj = DataTransformationTrainingPipeline()
+    obj.main()
+    
+    logger.info(f">>>>>> stage {STAGE_NAME} completed <<<<<<\n\nx==========x")
+
 except Exception as e:
     logger.exception(e)
     raise e
 
+
+# =========================
+# MODEL TRAINING
+# =========================
+STAGE_NAME = "Model Training Stage"
+
+try:
+    logger.info(f">>>>>> stage {STAGE_NAME} started <<<<<<")
+    
+    obj = ModelTrainerTrainingPipeline()
+    obj.main()
+    
+    logger.info(f">>>>>> stage {STAGE_NAME} completed <<<<<<\n\nx==========x")
+
+except Exception as e:
+    logger.exception(e)
+    raise e
+
+
+# =========================
+# MODEL EVALUATION
+# =========================
 STAGE_NAME = "Model Evaluation Stage"
 
 try:
-        logger.info(f">>>>>> stage {STAGE_NAME} started <<<<<<")
-        data_ingestion=ModelEvaluationTrainingPipeline()
-        data_ingestion.main()
-        logger.info(f">>>>>> stage {STAGE_NAME} completed <<<<<<\n\nx==========x")
+    logger.info(f">>>>>> stage {STAGE_NAME} started <<<<<<")
+    
+    obj = ModelEvaluationTrainingPipeline()
+    obj.main()
+    
+    logger.info(f">>>>>> stage {STAGE_NAME} completed <<<<<<\n\nx==========x")
+
 except Exception as e:
-        logger.exception(e)
-        raise e
+    logger.exception(e)
+    raise e

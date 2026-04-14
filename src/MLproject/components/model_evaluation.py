@@ -10,8 +10,6 @@ from MLproject.entity.config_entity import ModelEvaluationConfig
 from MLproject.utils.common import save_json
 from pathlib import Path
 
-# ✅ Set tracking URI (DagsHub)
-mlflow.set_tracking_uri("https://dagshub.com/Athang-byte/End-to-End-Machine-Learning-Project-with-ML-flow.mlflow")
 
 
 class ModelEvaluation:

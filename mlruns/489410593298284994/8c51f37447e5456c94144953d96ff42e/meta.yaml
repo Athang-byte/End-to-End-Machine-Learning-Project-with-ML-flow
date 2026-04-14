@@ -1,0 +1,15 @@
+artifact_uri: file:///D:/End-to-End-Machine-Learning-Project-with-ML-flow/mlruns/489410593298284994/8c51f37447e5456c94144953d96ff42e/artifacts
+end_time: 1776148062432
+entry_point_name: ''
+experiment_id: '489410593298284994'
+lifecycle_stage: active
+run_id: 8c51f37447e5456c94144953d96ff42e
+run_name: crawling-cow-142
+run_uuid: 8c51f37447e5456c94144953d96ff42e
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1776148051015
+status: 3
+tags: []
+user_id: Athang Sagar

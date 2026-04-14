@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Wine Quality Prediction</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<!-- HERO SECTION -->
+<section class="hero">
+    <h1>Wine Quality Prediction</h1>
+    <p>Predict the quality of wine using Machine Learning</p>
+    <a href="#form-section">
+        <button>Get Started ↓</button>
+    </a>
+</section>
+
+<!-- FORM SECTION -->
+<section id="form-section" class="form-section">
+    <div class="container">
+        <h2>Please Fill The Information</h2>
+
+        <form action="/predict" method="post">
+
+            <div class="row">
+                <div class="input-box">
+                    <label>Fixed Acidity:</label>
+                    <input type="number" step="any" name="fixed_acidity" placeholder="fixed_acidity" required>
+                </div>
+
+                <div class="input-box">
+                    <label>Volatile Acidity:</label>
+                    <input type="number" step="any" name="volatile_acidity" placeholder="volatile_acidity" required>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="input-box">
+                    <label>Citric Acid:</label>
+                    <input type="number" step="any" name="citric_acid" placeholder="citric_acid" required>
+                </div>
+
+                <div class="input-box">
+                    <label>Residual Sugar:</label>
+                    <input type="number" step="any" name="residual_sugar" placeholder="residual_sugar" required>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="input-box">
+                    <label>Chlorides:</label>
+                    <input type="number" step="any" name="chlorides" placeholder="chlorides" required>
+                </div>
+
+                <div class="input-box">
+                    <label>Free Sulfur Dioxide:</label>
+                    <input type="number" step="any" name="free_sulfur_dioxide" placeholder="free_sulfur_dioxide" required>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="input-box">
+                    <label>Total Sulfur Dioxide:</label>
+                    <input type="number" step="any" name="total_sulfur_dioxide" placeholder="total_sulfur_dioxide" required>
+                </div>
+
+                <div class="input-box">
+                    <label>Density:</label>
+                    <input type="number" step="any" name="density" placeholder="density" required>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="input-box">
+                    <label>pH:</label>
+                    <input type="number" step="any" name="pH" placeholder="pH" required>
+                </div>
+
+                <div class="input-box">
+                    <label>Sulphates:</label>
+                    <input type="number" step="any" name="sulphates" placeholder="sulphates" required>
+                </div>
+            </div>
+
+            <div class="row single">
+                <div class="input-box">
+                    <label>Alcohol:</label>
+                    <input type="number" step="any" name="alcohol" placeholder="alcohol" required>
+                </div>
+            </div>
+
+            <button type="submit">Predict</button>
+
+            <div class="result">
+                <p>{{ prediction_text }}</p>
+            </div>
+
+        </form>
+    </div>
+</section>
+
+</body>
+</html>
