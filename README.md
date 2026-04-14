@@ -72,3 +72,44 @@ $env:MLFLOW_TRACKING_URI="https://dagshub.com/Athang-byte/End-to-End-Machine-Lea
 $env:MLFLOW_TRACKING_USERNAME="Athang-byte"
 $env:MLFLOW_TRACKING_PASSWORD="25168ee471fca5d7644ce6d4f2fe954248f25e69"
 ```
+AWS CI/CD Deployment with GitHub Actions
+1. Login to AWS Console
+  
+2. Create IAM User for Deployment
+   #with specific access
+    1.EC2 → Virtual machine for deployment
+    2.ECR (Elastic Container Registry) → Store Docker images
+   
+    #Description : About the Deployment 
+    1.Build Docker image of source code
+    2.Push Docker image to ECR
+    3.Launch EC2 instance
+    4.Pull Docker image from ECR into EC2
+    5.Run Docker container in EC2
+   
+    #Policy:
+    1.AmazonEC2ContainerRegistryFullAccess
+    2.AmazonEC2FullAccess
+   
+3.Create ECR Repository
+-Save the repository URI:<your-account-id>.dkr.ecr.<region>.amazonaws.com/<repository-name>
+
+  
+4. Create EC2 machine (Ubuntu)
+5. Open EC2 and Install docker in EC2 Machine:
+#optinal
+sudo apt-get update -y
+sudo apt-get upgrade
+#required
+curl -fsSL https://get.docker.com -o get-docker.sh
+sudo sh get-docker.sh
+sudo usermod -aG docker ubuntu
+newgrp docker
+6. Configure EC2 as self-hosted runner:
+setting>actions>runner>new self hosted runner> choose os> then run command one by one
+7. Setup github secrets:
+AWS_ACCESS_KEY_ID=
+AWS_SECRET_ACCESS_KEY=
+
+
+
