@@ -1,0 +1,9 @@
+pandas
+numpy
+scikit-learn
+joblib
+Flask
+Flask-Cors
+gunicorn
+PyYAML
+python-box==6.0.2

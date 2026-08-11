@@ -1,5 +1,20 @@
-ElasticNet:
-  alpha: 0.2
-  l1_ratio: 0.1
-  
+models:
+  elasticnet:
+    alpha: 0.2
+    l1_ratio: 0.1
 
+  random_forest:
+    n_estimators: 200
+    max_depth: 10
+    min_samples_split: 2
+    random_state: 42
+
+  gradient_boosting:
+    n_estimators: 100
+    learning_rate: 0.05
+    max_depth: 3
+    random_state: 42
+
+cross_validation:
+  folds: 5
+  scoring: r2

@@ -1,0 +1,15 @@
+services:
+
+  wine-quality-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+
+    image: wine-quality-ml:prod
+
+    container_name: wine-quality-app
+
+    ports:
+      - "8080:8080"
+
+    restart: unless-stopped

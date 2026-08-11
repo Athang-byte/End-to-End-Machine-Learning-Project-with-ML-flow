@@ -65,8 +65,10 @@ class ConfigurationManager:
 
     def get_model_trainer_config(self) -> ModelTrainerConfig:
         config = self.config.model_trainer
-        params = self.params.ElasticNet
-        schema =self.schema.TARGET_COLUMN
+
+        models = self.params.models
+        cv_config = self.params.cross_validation
+        schema = self.schema.TARGET_COLUMN
 
         create_directories([config.root_dir])
 
@@ -75,30 +77,35 @@ class ConfigurationManager:
             train_data_path=config.train_data_path,
             test_data_path=config.test_data_path,
             model_name=config.model_name,
-            alpha=self.params.ElasticNet.alpha,
-            l1_ratio=self.params.ElasticNet.l1_ratio,
-            target_column=self.schema.TARGET_COLUMN.name
+            models=models,
+            target_column=schema.name,
+            cv_folds=cv_config.folds,
+            cv_scoring=cv_config.scoring,
+            comparison_file=config.comparison_file
         )
 
         return model_trainer_config
     
     def get_model_evaluation_config(self) -> ModelEvaluationConfig:
+
         config = self.config.model_evaluation
-        params=self.params.ElasticNet
-        schema =self.schema.TARGET_COLUMN
+        schema = self.schema.TARGET_COLUMN
 
         create_directories([config.root_dir])
 
         model_evaluation_config = ModelEvaluationConfig(
-        
-        root_dir=config.root_dir,
-        test_data_path = config.test_data_path, 
-  
-        model_path = config.model_path,
-        all_params = params, 
-        metric_file_name=config.metric_file_name, 
-        target_column = schema.name,
-        mlflow_uri="https://dagshub.com/Athang-byte/End-to-End-Machine-Learning-Project-with-ML-flow.mlflow"
+
+            root_dir=config.root_dir,
+
+            test_data_path=config.test_data_path,
+
+            model_path=config.model_path,
+
+            metric_file_name=config.metric_file_name,
+
+            target_column=schema.name,
+
+            mlflow_uri="https://dagshub.com/Athang-byte/End-to-End-Machine-Learning-Project-with-ML-flow.mlflow"
         )
 
         return model_evaluation_config
